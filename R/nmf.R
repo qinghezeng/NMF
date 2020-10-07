@@ -1724,13 +1724,13 @@ function(x, rank, method
                     print(res.runs)
                     print("resids")
                     print(resids)
-                    if( length(rNA <- which(is.na(resids) | is.nan(unlist(resids)))) ){
+                    if( length(rNA <- which(is.na(resids) | is.nan(as.matrx(resids)))) ){
                         if( length(rNA) <  nrun ) ffwarning("Some of the computed final deviances are NAs or NaNs [", length(rNA), "]")
                         else ffstop("All runs returned NA or NaN final deviances")
                     }
                     
                     # get best fit index
-                    mdev <- unlist(sapply(res.runs, '[[', 'min.deviance'))
+                    mdev <- as.matrix(sapply(res.runs, '[[', 'min.deviance'))
                     print("mdev")
                     print(mdev)
 					idx <- which(mdev == min(mdev, na.rm=TRUE))
