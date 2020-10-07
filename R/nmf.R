@@ -1720,6 +1720,7 @@ function(x, rank, method
                     
                     # check for NA deviance
                     resids <- sapply(res.runs, '[[', 'deviance')
+                    print(class(resids))
                     if( length(rNA <- which(is.na(resids) | is.nan(resids))) ){
                         if( length(rNA) <  nrun ) ffwarning("Some of the computed final deviances are NAs or NaNs [", length(rNA), "]")
                         else ffstop("All runs returned NA or NaN final deviances")
