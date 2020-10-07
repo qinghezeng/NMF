@@ -1720,14 +1720,19 @@ function(x, rank, method
                     
                     # check for NA deviance
                     resids <- sapply(res.runs, '[[', 'deviance')
-                    print(class(resids))
+                    print("res.runs")
+                    print(res.runs)
+                    print("resids")
+                    print(resids)
                     if( length(rNA <- which(is.na(resids) | is.nan(unlist(resids)))) ){
                         if( length(rNA) <  nrun ) ffwarning("Some of the computed final deviances are NAs or NaNs [", length(rNA), "]")
                         else ffstop("All runs returned NA or NaN final deviances")
                     }
                     
                     # get best fit index
-                    mdev <- sapply(res.runs, '[[', 'min.deviance')
+                    mdev <- unlist(sapply(res.runs, '[[', 'min.deviance'))
+                    print("mdev")
+                    print(mdev)
 					idx <- which(mdev == min(mdev, na.rm=TRUE))
 					if( length(idx) == 0L )
 						ffstop("Unexpected error: no partial result seem to have been saved.")
